@@ -10,9 +10,9 @@ const mongoose = require("mongoose");
 mongoose.connect("mongodb://127.0.0.1:27017/curd");
 
 //Import routes
-const userEx = require('./SRC/routes/curdEx.js')
-const userRoute = require('./SRC/routes/users.js')
-const queryRoute = require("./SRC/routes/queryPara.js")
+const userEx = require('./src/routes/curdEx.js')
+const userRoute = require('./src/routes/users.js')
+const queryRoute = require("./src/routes/queryPara.js")
 
 //routes
 app.use('/userData',userRoute)
