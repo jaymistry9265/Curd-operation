@@ -1,24 +1,23 @@
 const { model } = require("mongoose")
 const curdServices = require('../services/curdEx.js')
 
-const userCreate =(req,res)=>{
-    const user = curdServices.CreateUser(req.body)
+const userCreate =async(req,res)=>{
+    const user = await curdServices.CreateUser(req.body)
     res.send(user)
     console.log("My Data",user)
 
 }
 
-const userRead = (req,res) => {
-    // const r = myData.find(d => d.id === parseInt(req.params.id))
-    const user = curdServices.ReadUser(parseInt(req.params.id))
+const userRead = async(req,res) => {
+    const user = await curdServices.ReadUser(parseInt(req.params.id))
     if(!user){
         return res.send("data not found")
     }
     res.send(user)
 } 
 
-const userUpdate = (req,res)=>{
-    const user = curdServices.UpdateUsers(parseInt(req.params.id),req.body)
+const userUpdate = async (req,res)=>{
+    const user = await curdServices.UpdateUsers(parseInt(req.params.id),req.body)
     if(!user)
         {
             res.send("Data not found")
@@ -27,8 +26,8 @@ const userUpdate = (req,res)=>{
     console.log("Updated Data",user)            
 }
 
-const userDelete = (req,res)=>{
-    const user = curdServices.DeleteUsers(parseInt(req.params.id))
+const userDelete = async (req,res)=>{
+    const user = await curdServices.DeleteUsers(parseInt(req.params.id))
     if(!user)
     {
         res.send("Data not found")
@@ -37,10 +36,10 @@ const userDelete = (req,res)=>{
     console.log("Deleted Data",user)
 }
 
-const userNameandAge = (req, res) => {
+const userNameandAge = async (req, res) => {
     const { name } = req.params;
     const age = parseInt(req.params.age);
-    const result = curdServices.FindByNameAndAge(name, age);
+    const result = await curdServices.FindByNameAndAge(name, age);
     
     res.json(result);
     console.log("Filtered Data:", result);

@@ -10,8 +10,8 @@ const ReadUser = (id)=>{
     return myData.find(d => d.id === id)
 }
 
-const UpdateUsers = (id,userData)=>{
-    const data = myData.find(d =>d.id === id)
+const UpdateUsers = async (id,userData)=>{
+    const data = await myData.find(d =>d.id === id)
     if (!data) return null
     const {name,age}=userData
     data.name=name
@@ -19,15 +19,15 @@ const UpdateUsers = (id,userData)=>{
     return data
 }
 
-const DeleteUsers = (id)=>{
-    const index = myData.find(d =>d.id === id)
+const DeleteUsers = async(id)=>{
+    const index = await myData.find(d =>d.id === id)
     if(index === -1) return null    
     myData.splice(index,1)
     return index
 }
 
 const FindByNameAndAge = (name, age) => {
-    const nameData = myData.filter((data) => data.name === name);
+    const nameData =  myData.filter((data) => data.name === name);
     if (nameData.length === 0) {
         return { message: "No data found for the given name." };
     }
