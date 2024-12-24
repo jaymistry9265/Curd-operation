@@ -1,18 +1,18 @@
-
+const { query } = require('express')
+const queryServices = require('../services/queryPara.js')
 
 const queryNameAndAge = (req,res) =>{
-    let n = {name:req.query.name,age:req.query.age}
-    res.send(n)
-    console.log(n)
+    const result =  queryServices.NameandAge(req.query)
+    res.send(result)
+    console.log(result)
 }
 
 const queryGet = (req,res) => {
-    console.log(req.query)
-    return res.json({
-        name:req.query.name,
-        message:"Hello World",
-        age:req.query.age
-    })
+    const result = queryServices.getQuery(req.query) 
+    
+    console.log(result)
+    return res.json(result)
+    
 }
 
 module.exports = {
